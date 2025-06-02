@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as reviewsController from "../controllers/reviewsController";
 
-const router: Router = Router();
+const router = Router();
 
 router.get("/", reviewsController.getAllReviews);
 router.get("/:id", (req, res, next) => {

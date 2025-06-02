@@ -1,9 +1,8 @@
-import { Router } from "express";
+import express, { RequestHandler } from "express";
 import * as productsController from "../controllers/productsController";
-import { RequestHandler } from "express";
 
 
-const router: Router = Router();
+const router = express.Router();
 
 router.get("/", productsController.getAllProducts);
 router.get("/:id", productsController.getProduct as RequestHandler);
