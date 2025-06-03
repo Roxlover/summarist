@@ -1,17 +1,19 @@
-import { Schema, model } from "mongoose";
-import { Review } from "common";
+import mongoose, { Schema, Document } from "mongoose";
 
-const reviewSchema = new Schema<Review>(
-  {
-    productId: { type: String, required: true },
-    platformReviewId: { type: String, required: true },
-    username: { type: String, required: true },
-    rating: { type: Number, required: true },
-    content: { type: String, required: true },
-    date: { type: String, required: true },
-    raw: { type: Schema.Types.Mixed }
-  },
-  { timestamps: true }
-);
+export interface IReview extends Document {
+  username: string;
+  rating: number | null;
+  content: string;
+  date: string;
+  productUrl: string; 
+}
 
-export default model<Review>("Review", reviewSchema);
+const ReviewSchema: Schema<IReview> = new Schema({
+  username: { type: String, required: false },
+  rating: { type: Number, required: false },
+  content: { type: String, required: true },
+  date: { type: String, required: false },
+  productUrl: { type: String, required: true },
+});
+
+export default mongoose.model<IReview>("Review", ReviewSchema);
