@@ -1,19 +1,12 @@
-import { Router, Request, Response } from "express";
+import express from "express";
 import { scrapeTrendyolReviews } from "../utils/scrapeTrendyolPuppeteer";
-import Review from "../models/Review";
+const router = express.Router();
 
-const router: Router = Router();
-
-router.post("/", async (req: Request, res: Response): Promise<void> => {
+router.post("/", async (req, res) => {
   const { url } = req.body;
-  if (!url || !url.includes("trendyol.com")) {
-    res.status(400).json({ error: "Sadece Trendyol linki destekleniyor." });
-    return;
-  }
   try {
     const reviews = await scrapeTrendyolReviews(url);
-    const result = await Review.insertMany(reviews, { ordered: false });
-    res.json({ status: "ok", count: result.length, reviews: result });
+    res.json({ status: "ok", count: reviews.length, reviews });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
