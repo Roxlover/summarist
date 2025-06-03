@@ -1,4 +1,4 @@
-import { scrapeTrendyolReviews } from "../utils/scrapeTrendyol";
+import { scrapeTrendyolReviews } from "../utils/scrapeTrendyolPuppeteer";
 import Review from "../models/Review";
 import { Request, Response, Router } from "express";
 

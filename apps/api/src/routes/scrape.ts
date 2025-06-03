@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { scrapeTrendyolReviews } from "../utils/scrapeTrendyol";
+import { scrapeTrendyolReviews } from "../utils/scrapeTrendyolPuppeteer";
 import Review from "../models/Review";
 
 const router: Router = Router();
