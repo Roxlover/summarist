@@ -5,3 +5,7 @@ build/
 .env.*
 pnpm-lock.yaml
 *.log
+.vscode/
+.DS_Store
+*.tsbuildinfo
+.pnpm-debug.log
