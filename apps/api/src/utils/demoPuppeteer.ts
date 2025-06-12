@@ -4,7 +4,7 @@ import puppeteer from "puppeteer";
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   
-  await page.goto("https://www.trendyol.com/skechers/ridge-oak-gateway-trail-kadin-gri-outdoor-ayakkabi-180233-gypk-p-926317264/yorumlar", { waitUntil: "networkidle2" });
+  await page.goto("https://www.trendyol.com/amentes/bambu-kapakli-vakumlu-borosilikat-3-lu-set-cam-yaglik-sirkelik-bambu-altlik-p-364313178/yorumlar?boutiqueId=61&merchantId=731207", { waitUntil: "networkidle2" });
 
   await page.waitForSelector(".reviews .comment", { timeout: 10000 });
 
