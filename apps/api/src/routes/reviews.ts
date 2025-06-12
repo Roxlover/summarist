@@ -1,12 +1,20 @@
-import { Router } from "express";
-import * as reviewsController from "../controllers/reviewsController";
+import express, { Request, Response } from "express";
+import Review from "../models/Review";
 
-const router = Router();
+const router = express.Router();
 
-router.get("/", reviewsController.getAllReviews);
-router.get("/:id", (req, res, next) => {
-  Promise.resolve(reviewsController.getReview(req, res)).catch(next);
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.query;
+
+    const filter = productId ? { productId } : {};
+    
+    const reviews = await Review.find(filter).sort({ date: -1 });
+
+    res.json({ count: reviews.length, reviews });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
 });
-router.post("/", reviewsController.createReview);
 
 export default router;

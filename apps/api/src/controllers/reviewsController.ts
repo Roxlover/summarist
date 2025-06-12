@@ -17,3 +17,14 @@ export const createReview = async (req: Request, res: Response) => {
   await review.save();
   res.status(201).json(review);
 };
+
+export const searchReviews = async (req: Request, res: Response) => {
+  const { productUrl } = req.query;
+
+  if (!productUrl || typeof productUrl !== "string") {
+    return res.status(400).json({ error: "productUrl query param required" });
+  }
+
+  const reviews = await Review.find({ productUrl });
+  res.json(reviews);
+};
